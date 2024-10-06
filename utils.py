@@ -1,5 +1,6 @@
 import os
 
+
 def limpiar_pantalla():
     """Funcion que limpia la pantalla,
     segun el sistema operativo"""
