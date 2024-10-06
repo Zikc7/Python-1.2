@@ -1,7 +1,7 @@
 
-from operaciones import division, suma, resta, multiplicacion
-from utils import limpiar_pantalla
-from interfaz import menu, seleccion_numeros, seleccion_operacion
+from core.operaciones import division, suma, resta, multiplicacion
+from helpers.utils import limpiar_pantalla
+from core.interfaz import menu, seleccion_numeros, seleccion_operacion
 
 
 def main():
