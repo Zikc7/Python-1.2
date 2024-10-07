@@ -20,8 +20,6 @@ def main():
                 resta(operando_1, operando_2)
             case 3:
                 operando_1, operando_2 = seleccion_numeros(opcion)
-                operando_1 = float(operando_1)
-                operando_2 = float(operando_2)
                 limpiar_pantalla()
                 division(operando_1, operando_2)
             case 4:
