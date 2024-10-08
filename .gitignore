@@ -1,2 +1,6 @@
+#! Cache
 **/__pycache__/*
+#!Entorno Virtual
 env/*
+#!Data
+Historial calculadora.json

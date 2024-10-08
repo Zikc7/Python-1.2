@@ -1,11 +1,15 @@
 
 from core.operaciones import division, suma, resta, multiplicacion
-from helpers.utils import limpiar_pantalla
+#from helpers.utils import limpiar_pantalla #! Se dejo de usar en la version anterior lo dejo por si acaso XDD
 from core.interfaz import menu, seleccion_numeros, seleccion_operacion
+from core.historial_operaciones import mostrar_historial,eliminar_historial
+from config import constant
+from helpers.file_helpers import leer_archivo
 
 
 def main():
     print("Hola bienvenido a la calculadora")
+
     while True:
         menu()
         opcion: float = seleccion_operacion()
@@ -18,6 +22,10 @@ def main():
                 division(*seleccion_numeros())
             case 4:
                 multiplicacion(*seleccion_numeros())
+            case 5:
+                mostrar_historial()
+            #case 6:
+                #!eliminar_historial() Se esta probrando jejeje
             case 0:
                 print("Gracias por usar nuestra aplicacion!!")
                 break

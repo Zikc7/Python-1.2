@@ -4,10 +4,12 @@ from helpers.utils import limpiar_pantalla
 def menu():
     """Despliega un menu y solo eso"""
     print("¿Cual operación desea ejecutar?")
-    print("1: suma")
-    print("2: resta")
-    print("3: división")
-    print("4: multiplicación")
+    print("1: Suma")
+    print("2: Resta")
+    print("3: División")
+    print("4: Multiplicación")
+    print("5: Mostrar Historial de Operaciones")
+    print("6: Eliminar Historial de Operaciones")
     print("0: Salir")
 
 
@@ -15,7 +17,7 @@ def seleccion_operacion() -> float:
     """Funcion donde se solicita el numero que nos dira que operacion usar"""
     try:
         opcion: float = float(
-        input("Seleccione la operacion que desea ejecutar: "))
+            input("Seleccione la operacion que desea ejecutar: "))
         return opcion
     except ValueError as ex:
         limpiar_pantalla()

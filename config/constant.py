@@ -1,0 +1,1 @@
+HISTORIAL_PATH = "Historial calculadora.json"
