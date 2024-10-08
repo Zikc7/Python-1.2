@@ -13,25 +13,24 @@ def menu():
 
 def seleccion_operacion() -> float:
     """Funcion donde se solicita el numero que nos dira que operacion usar"""
-    opcion: float = float(
+    try:
+        opcion: float = float(
         input("Seleccione la operacion que desea ejecutar: "))
-    return opcion
+        return opcion
+    except ValueError as ex:
+        limpiar_pantalla()
+        print(f"{ex} Se esperaba un número")
+        seleccion_operacion()
 
 
-def seleccion_numeros(opcion: float) -> tuple:
+def seleccion_numeros() -> tuple:
     """Segun la operacion les solicita los operandos al usuario,
     si esta es una division verifica que no sean 0"""
-    if opcion != 3:
+    try:
         num1: float = float(input("Ingrese el primer operando: "))
         num2: float = float(input("Ingrese el segundo operando: "))
         return num1, num2
-    elif opcion == 3:
-        while True:
-            num1: float = float(input("Ingrese el primer operando: "))
-            num2: float = float(input("Ingrese el segundo operando: "))
-            if num1 != 0 and num2 != 0:
-                return num1, num2
-                break
-            else:
-                limpiar_pantalla()
-                print("Ingrese operandos distintos a 0")
+    except ValueError as ex:
+        limpiar_pantalla()
+        print(f"{ex} Se esperaba un número")
+        seleccion_numeros()

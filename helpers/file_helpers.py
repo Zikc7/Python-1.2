@@ -11,4 +11,4 @@ def leer_archivo(path: str) -> list:
 
 def escribir_archivo(path: str, content: list) -> None:
     with open(path, "w") as file:
-        asdas
+        pass

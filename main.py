@@ -11,28 +11,18 @@ def main():
         opcion: float = seleccion_operacion()
         match opcion:
             case 1:
-                operando_1, operando_2 = seleccion_numeros(opcion)
-                limpiar_pantalla()
-                suma(operando_1, operando_2)
+                suma(*seleccion_numeros())
             case 2:
-                operando_1, operando_2 = seleccion_numeros(opcion)
-                limpiar_pantalla()
-                resta(operando_1, operando_2)
+                resta(*seleccion_numeros())
             case 3:
-                operando_1, operando_2 = seleccion_numeros(opcion)
-                limpiar_pantalla()
-                division(operando_1, operando_2)
+                division(*seleccion_numeros())
             case 4:
-                operando_1, operando_2 = seleccion_numeros(opcion)
-                limpiar_pantalla()
-                multiplicacion(operando_1, operando_2)
+                multiplicacion(*seleccion_numeros())
             case 0:
-                limpiar_pantalla()
                 print("Gracias por usar nuestra aplicacion!!")
                 break
             case _:
-                limpiar_pantalla()
-                print("Selecciones una opcion viable: ")
+                print("Selecciones una opcion habilitada: ")
 
 
 if __name__ == "__main__":

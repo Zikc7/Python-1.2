@@ -8,3 +8,8 @@ def limpiar_pantalla():
         os.system('cls')
     else:
         os.system('clear')
+
+
+
+
+
