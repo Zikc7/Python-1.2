@@ -1,6 +1,6 @@
 from models.operacion_model import Operacion
 from helpers.utils import limpiar_pantalla
-from core.historial_operaciones import guardar_historial,mostrar_historial
+from core.historial_operaciones import guardar_historial,mostrar_historial,eliminar_historial
 
 class OperacionModel:
 
@@ -29,8 +29,8 @@ class OperacionModel:
                     cls.multiplicacion(cls.seleccion_numeros())
                 case 5:
                     mostrar_historial()
-                #case 6:
-                    #!eliminar_historial() Se esta probrando jejeje
+                case 6:
+                    eliminar_historial()
                 case 0:
                     print("Gracias por usar nuestra aplicacion!!")
                     break

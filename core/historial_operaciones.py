@@ -9,7 +9,7 @@ def guardar_historial(op : "Operacion"):
     historial: list[dict]= leer_archivo(constant.HISTORIAL_PATH)
     historial.append(op.__dict__)
     escribir_archivo(constant.HISTORIAL_PATH,historial )
-    #[op.__dict__ for op in Operacion.all]
+    #?[op.__dict__ for op in Operacion.all]
 
 
 
@@ -29,4 +29,3 @@ def mostrar_historial() -> list[str]:
 def eliminar_historial():
     """Elimina el historial"""
     borrar_archivo(constant.HISTORIAL_PATH)
-    pass

@@ -17,3 +17,4 @@ class Operacion:
     @resultado_op.setter
     def resultado_op(self, resultado_op: str):
         self._resultado_op = resultado_op
+        
