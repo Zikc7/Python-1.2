@@ -6,7 +6,8 @@ def leer_archivo(path: str) -> list:
         with open(path, "r") as file:
             return json.load(file)
     except FileNotFoundError as ex:
-        escribir_archivo(path, [])
+        from controller.operacion_controller import Operacion
+        escribir_archivo(path,[Operacion.__dict__ for op in Operacion.all])
         return []
 
 

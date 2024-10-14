@@ -7,9 +7,10 @@ from core.historial_operaciones import guardar_historial
 def suma(num1: float, num2: float) -> float:
     """Funcion donde se realiza y devuelva el resusltado de la suma"""
     limpiar_pantalla()
-    operacion = f"{num1} + {num2} = {num1 + num2}"
+    operacion = {"operando_1": num1 ,"operando_2": num2}
+    resultado: str =  f"{operacion['operando_1']} + {operacion['operando_2']} = {operacion['operando_1'] + operacion['operando_2']} "
     guardar_historial(operacion)
-    print(f"La suma de {num1} + {num2} = {num1 + num2}")
+    print(operacion)
 
 
 def resta(num1: float, num2: float) -> float:
