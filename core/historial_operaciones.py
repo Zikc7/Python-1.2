@@ -37,20 +37,19 @@ historial y que guarde en el ¿mismo espacio?"""
 
 def modificar_op(op: "Operacion"):
     historial: list[dict] = leer_archivo(constant.HISTORIAL_PATH)
+
+    if not historial:
+        mostrar_historial()
+        print("Todavía no hay historial disponible.")
+        return
+    mostrar_historial()
+    print("Seleccione el número de operación que desea cambiar:")
     while True:
         try:
-            if historial:
-                mostrar_historial()
-                print("Seleccione el numero de op. que desee cambiar")
-                opcion_modificar_h = int(input())
-                historial[opcion_modificar_h] = op.__dict__
-                escribir_archivo(constant.HISTORIAL_PATH,historial)
-                break
-            else:
-                mostrar_historial()
-                print("Todavia no hay historial disponible")
-                break
-        except ValueError as ex:
-            print(f"Ingrese un numero por favor")
+            opcion_modificar_h = int(input())
+            historial[opcion_modificar_h] = op.__dict__
+            escribir_archivo(constant.HISTORIAL_PATH, historial)
+            print("Operación modificada correctamente.")
+            break
         except IndexError as ex:
-            print(f"Ingrese un numero de operacion valido")
+            print(f"{ex}: Ingrese un numero de operacion valido")

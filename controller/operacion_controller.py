@@ -46,12 +46,11 @@ class OperacionModel:
         try:
             opcion: float = float(
                 input("Seleccione la operacion que desea ejecutar: "))
-
             return opcion
         except ValueError as ex:
             limpiar_pantalla()
             print(f"{ex} Se esperaba un número")
-            cls.seleccion_operacion()
+            return cls.seleccion_operacion()
 
     @classmethod
     def seleccion_numeros(cls) -> "Operacion":
@@ -93,15 +92,17 @@ class OperacionModel:
     def division(cls, nueva_op: "Operacion") -> str:
         """Operacion donde se realiza y devuelve el resultado de la división"""
         limpiar_pantalla()
-        try:
-            resultado: str = f"{nueva_op.operando_1} / {nueva_op.operando_2} = {
-                nueva_op.operando_1 / nueva_op.operando_2}"
-            nueva_op.resulatdo_op = resultado
-            print(nueva_op.resultado_op)
-            return nueva_op
-        except ZeroDivisionError as ex:
-            print(f"{ex} No se puede dividir por 0, Ingrese un número valido")
-            cls.division(cls.seleccion_numeros())
+        while True:
+            try:
+                resultado: str = f"{nueva_op.operando_1} / {nueva_op.operando_2} = {
+                    nueva_op.operando_1 / nueva_op.operando_2}"
+                nueva_op.resultado_op = resultado
+                print(nueva_op.resultado_op)
+                return nueva_op
+                break
+            except ZeroDivisionError as ex:
+                print(f"{ex} No se puede dividir por 0, Ingrese un número valido")
+                return cls.division(cls.seleccion_numeros())
 
     @classmethod
     def multiplicacion(cls, nueva_op: "Operacion") -> Operacion:
@@ -122,13 +123,38 @@ class OperacionModel:
         print("3: División")
         print("4: Multiplicación")
         opcion: float = cls.seleccion_operacion()
-        match opcion:
-            case 1:
-                modificar_op(cls.suma(cls.seleccion_numeros()))
-            case 2:
-                modificar_op(cls.resta(cls.seleccion_numeros()))
-            case 3:
-                modificar_op(cls.division(cls.seleccion_numeros()))
-            case 4:
-                modificar_op(cls.multiplicacion(cls.seleccion_numeros()))
-        print("La operacion fue modificada con exito")
+        while True:
+            match opcion:
+                case 1:
+                        try:
+                            modificar_op(cls.suma(cls.seleccion_numeros()))
+                            break
+                        except ValueError as ex:
+                            print(f"{ex}: Error al modificar la operación. Ingrese un número válido.")
+                        except IndexError as ex:
+                            print(f"{ex}: Error al modificar la operación. Ingrese un número de operacion valido válido.")
+                case 2:
+                        try:
+                            modificar_op(cls.resta(cls.seleccion_numeros()))
+                            break
+                        except ValueError as ex:
+                            print(f"{ex}: Error al modificar la operación. Ingrese un número válido.")
+                            modificar_op(cls.resta(cls.seleccion_numeros()))
+
+                case 3:
+                        try:
+                            modificar_op(cls.division(cls.seleccion_numeros()))
+                            break
+                        except ValueError as ex:
+                            print(f"{ex}: Error al modificar la operación. Ingrese un número válido.")
+                            modificar_op(cls.division(cls.seleccion_numeros()))
+                case 4:
+                        try:
+                            modificar_op(cls.multiplicacion(cls.seleccion_numeros()))
+                            break
+                        except ValueError as ex:
+                            print(f"{ex}: Error al modificar la operación. Ingrese un número válido.")
+                            modificar_op(cls.multiplicacion(cls.seleccion_numeros()))
+                case _:
+                    print("Ingrese un numero de operacion valido")
+                    opcion: float = cls.seleccion_operacion()
