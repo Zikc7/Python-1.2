@@ -43,7 +43,7 @@ def modificar_op(op: "Operacion"):
         print("Todavía no hay historial disponible.")
         return
     mostrar_historial()
-    print("Seleccione el número de operación que desea cambiar:")
+    print("Ingrese el número de operación que desea cambiar:")
     while True:
         try:
             opcion_modificar_h = int(input())

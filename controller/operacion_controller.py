@@ -1,48 +1,56 @@
+import questionary
+
+
 from models.operacion_model import Operacion
 from helpers.utils import limpiar_pantalla
 from helpers.error_treatment import tratamiento_opc_cambiar_op
-from core.historial_operaciones import guardar_historial, mostrar_historial, eliminar_historial,modificar_op
+from helpers.questionary import estilo_personalizado
+from core.historial_operaciones import guardar_historial, mostrar_historial, eliminar_historial, modificar_op
+
 
 class OperacionModel:
 
     @classmethod
     def iniciar(cls):
+        """Funcion iniciadora, llama y trabaja con todas las demas funciones principales"""
         limpiar_pantalla()
         print("Hola bienvenido a la calculadora")
         while True:
-            print("¿Cual operación desea ejecutar?")
-            print("1: Suma")
-            print("2: Resta")
-            print("3: División")
-            print("4: Multiplicación")
-            print("5: Mostrar Historial de Operaciones")
-            print("6: Eliminar Historial de Operaciones")
-            print("7: Modificar Operaciones")
-            print("0: Salir")
-            opcion: float = cls.seleccion_operacion()
+            opcion = questionary.select(
+                "¿Cual operación desea ejecutar?",
+
+                choices=[
+                    "Suma",
+                    "Resta",
+                    "División",
+                    "Multiplicación",
+                    "Mostrar Historial de Operaciones",
+                    "Eliminar Historial de Operaciones",
+                    "Modificar Operaciones",
+                    "Salir",
+                ], use_arrow_keys=True,
+                instruction="Usar Flechas",
+                style=estilo_personalizado()).ask()
             match opcion:
-                case 1:
+                case "Suma":
                     guardar_historial(cls.suma(cls.seleccion_numeros()))
-                case 2:
+                case "Resta":
                     guardar_historial(cls.resta(cls.seleccion_numeros()))
-                case 3:
+                case "División":
                     guardar_historial(cls.division(cls.seleccion_numeros()))
-                case 4:
-                    guardar_historial(cls.multiplicacion(cls.seleccion_numeros()))
-                case 5:
+                case "Multiplicación":
+                    guardar_historial(cls.multiplicacion(
+                        cls.seleccion_numeros()))
+                case "Mostrar Historial de Operaciones":
                     mostrar_historial()
-                case 6:
+                case "Eliminar Historial de Operaciones":
                     eliminar_historial()
-                case 7:
+                case "Modificar Operaciones":
                     cls.op_modif()
-                case 0:
+                case "Salir":
                     limpiar_pantalla()
                     print("Gracias por usar nuestra aplicacion!!")
                     break
-                case _:
-                    limpiar_pantalla()
-                    print("Selecciones una opcion habilitada: ")
-
 
     @classmethod
     def seleccion_operacion(cls) -> float:
@@ -56,11 +64,12 @@ class OperacionModel:
             except ValueError as ex:
                 limpiar_pantalla()
                 print(f"{ex} Se esperaba un número")
+
     @classmethod
     def seleccion_numeros(cls) -> "Operacion":
         """Segun la operacion les solicita los operandos al usuario,
         si esta es una division verifica que no sean 0"""
-        while(True):
+        while (True):
             try:
                 num1: float = float(input("Ingrese el primer operando: "))
                 num2: float = float(input("Ingrese el segundo operando: "))
@@ -71,11 +80,12 @@ class OperacionModel:
             except ValueError as ex:
                 limpiar_pantalla()
                 print(f"{ex} Se esperaba un número")
+
     @classmethod
     def seleccion_numeros_modificar(cls) -> "Operacion":
         """Segun la operacion les solicita los operandos al usuario,
         si esta es una division verifica que no sean 0"""
-        while(True):
+        while (True):
             try:
                 num1: float = float(input("Ingrese el primer operando: "))
                 num2: float = float(input("Ingrese el segundo operando: "))
@@ -85,7 +95,6 @@ class OperacionModel:
             except ValueError as ex:
                 limpiar_pantalla()
                 print(f"{ex} Se esperaba un número")
-                    
 
     @classmethod
     def suma(cls, nueva_op: "Operacion") -> "Operacion":
@@ -106,6 +115,7 @@ class OperacionModel:
         nueva_op.resultado_op = resultado
         print(nueva_op.resultado_op)
         return nueva_op
+
     @classmethod
     def division(cls, nueva_op: "Operacion") -> "Operacion":
         """Operacion donde se realiza y devuelve el resultado de la división"""
@@ -134,26 +144,30 @@ class OperacionModel:
 
     @classmethod
     def op_modif(cls) -> None:
+        """Funcion que pregunta que operacion desea modificar y llama a las funciones base"""
         limpiar_pantalla()
-        print("¿Cual operación desea ejecutar?")
-        print("1: Suma")
-        print("2: Resta")
-        print("3: División")
-        print("4: Multiplicación")
-        opcion: float = cls.seleccion_operacion()
+        opcion = questionary.select(
+            "¿Cual operación desea modificar?",
+
+            choices=[
+                "Suma",
+                "Resta",
+                "División",
+                "Multiplicación",
+            ], use_arrow_keys=True,
+            instruction="Usar Flechas",
+            style=estilo_personalizado()
+        ).ask()
         match opcion:
-            case 1:
-                    op_nums :"Operacion" = cls.seleccion_numeros()
-                    tratamiento_opc_cambiar_op(cls.suma,op_nums)
-            case 2:
-                    op_nums :"Operacion" = cls.seleccion_numeros()
-                    tratamiento_opc_cambiar_op(cls.resta,op_nums)
-            case 3:
-                    op_nums :"Operacion" = cls.seleccion_numeros()
-                    tratamiento_opc_cambiar_op(cls.division,op_nums)
-            case 4:
-                    op_nums :"Operacion" = cls.seleccion_numeros()
-                    tratamiento_opc_cambiar_op(cls.multiplicacion,op_nums)
-            case _:
-                print("Ingrese un numero de operacion valido")
-                cls.op_modif()
+            case "Suma":
+                op_nums: "Operacion" = cls.seleccion_numeros()
+                tratamiento_opc_cambiar_op(cls.suma, op_nums)
+            case "Resta":
+                op_nums: "Operacion" = cls.seleccion_numeros()
+                tratamiento_opc_cambiar_op(cls.resta, op_nums)
+            case "Division":
+                op_nums: "Operacion" = cls.seleccion_numeros()
+                tratamiento_opc_cambiar_op(cls.division, op_nums)
+            case "Multiplicacion":
+                op_nums: "Operacion" = cls.seleccion_numeros()
+                tratamiento_opc_cambiar_op(cls.multiplicacion, op_nums)

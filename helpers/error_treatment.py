@@ -5,7 +5,6 @@ from core.historial_operaciones import modificar_op
 def tratamiento_opc_cambiar_op(operaciones_varias,seleccion_num_op) -> None :
     """Funcion encargada de recibir la modificacion de una operacion y tratar sus posibles errores"""
     try:
-
         modificar_op(operaciones_varias(seleccion_num_op))
     except ValueError as ex:
         print(f"{ex}: Error al modificar la operación. Ingrese un número válido.")
