@@ -20,8 +20,7 @@ def mostrar_historial() -> list[str]:
     if historial:
         print("El historial es: ")
         for i,  operacion in enumerate(historial, start=0):
-            resultado_historial = f"La operacion n°{
-                i}: {operacion.get("_resultado_op")}"
+            resultado_historial = f"La operacion n°{i}: {operacion.get('_resultado_op')}"
             print(resultado_historial)
     else:
         print("El historial esta vacio")

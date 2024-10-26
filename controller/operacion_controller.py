@@ -100,8 +100,7 @@ class OperacionModel:
     def suma(cls, nueva_op: "Operacion") -> "Operacion":
         """Funcion donde se realiza y devuelva el resusltado de la suma"""
         limpiar_pantalla()
-        resultado: str = f"{nueva_op.operando_1} + {nueva_op.operando_2} = {
-            nueva_op.operando_1 + nueva_op.operando_2}"
+        resultado: str = f"{nueva_op.operando_1} + {nueva_op.operando_2} = {nueva_op.operando_1 + nueva_op.operando_2}"
         nueva_op.resultado_op = resultado
         print(nueva_op.resultado_op)
         return nueva_op
@@ -110,8 +109,7 @@ class OperacionModel:
     def resta(cls, nueva_op: "Operacion") -> "Operacion":
         """Operacion donde se realiza y devuelve el resultado de la resta"""
         limpiar_pantalla()
-        resultado: str = f"{nueva_op.operando_1} - {nueva_op.operando_2} = {
-            nueva_op.operando_1 - nueva_op.operando_2}"
+        resultado: str = f"{nueva_op.operando_1} - {nueva_op.operando_2} = {nueva_op.operando_1 - nueva_op.operando_2}"
         nueva_op.resultado_op = resultado
         print(nueva_op.resultado_op)
         return nueva_op
@@ -122,8 +120,7 @@ class OperacionModel:
         limpiar_pantalla()
         while True:
             try:
-                resultado: str = f"{nueva_op.operando_1} / {nueva_op.operando_2} = {
-                    nueva_op.operando_1 / nueva_op.operando_2}"
+                resultado: str = f"{nueva_op.operando_1} / {nueva_op.operando_2} = {nueva_op.operando_1 / nueva_op.operando_2}"
                 nueva_op.resultado_op = resultado
                 print(nueva_op.resultado_op)
                 return nueva_op
@@ -136,8 +133,7 @@ class OperacionModel:
     def multiplicacion(cls, nueva_op: "Operacion") -> "Operacion":
         """Operacion donde se realiza y devuelve el resultado de la multiplicación"""
         limpiar_pantalla()
-        resultado: str = f"{nueva_op.operando_1} * {nueva_op.operando_2} = {
-            nueva_op.operando_1 * nueva_op.operando_2}"
+        resultado: str = f"{nueva_op.operando_1} * {nueva_op.operando_2} = {nueva_op.operando_1 * nueva_op.operando_2}"
         nueva_op.resultado_op = resultado
         print(nueva_op.resultado_op)
         return nueva_op
@@ -165,9 +161,9 @@ class OperacionModel:
             case "Resta":
                 op_nums: "Operacion" = cls.seleccion_numeros()
                 tratamiento_opc_cambiar_op(cls.resta, op_nums)
-            case "Division":
+            case "División":
                 op_nums: "Operacion" = cls.seleccion_numeros()
                 tratamiento_opc_cambiar_op(cls.division, op_nums)
-            case "Multiplicacion":
+            case "Multiplicación":
                 op_nums: "Operacion" = cls.seleccion_numeros()
                 tratamiento_opc_cambiar_op(cls.multiplicacion, op_nums)
